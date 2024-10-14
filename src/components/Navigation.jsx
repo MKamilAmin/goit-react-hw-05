@@ -1,27 +1,9 @@
-import { NavLink } from "react-router-dom";
-import { setActive } from "../utils/setActiv";
-import NavigationBack from "./NavigationBack";
-import { useMovies } from "../hooks/useMovies";
+import { NavLink } from "react-router-dom"
 
-export default function Navigation() {
-  const { setFilterQuery, setListFiltred } = useMovies();
 
-  const handleClear = () => {
-    setQuery("");
-    setSearchMade(false);
-    setListFiltred([]);
-    setFilterQuery("");
-  };
-
-  return (
-    <nav className="navPage header">
-      <NavLink className={`{setActive} btn`} to="/">
-        Home
-      </NavLink>
-      <NavLink className={`{setActive} btn`} to="/movies" onClick={handleClear}>
-        Movies
-      </NavLink>
-      <NavigationBack />
-    </nav>
-  );
+export const Navigation = () => {
+    return (<nav className='navigation'>
+        <NavLink to='/'>Home</NavLink>
+        <NavLink to='/movies'>Movies</NavLink>
+        </nav>)
 }

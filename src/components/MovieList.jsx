@@ -1,27 +1,17 @@
-import { NavLink } from "react-router-dom";
-import { useMovies } from "../hooks/useMovies";
-import { imageBaseURL } from "../constants/constants";
+import { Link, useLocation } from 'react-router-dom';
 
-export default function MovieList() {
-  const { list } = useMovies();
+export const MovieList = ({allMovies}) => {
 
-  return (
-    <div>
-      <ul>
-        {list.map((movie) => (
-          <li key={movie.id} id={movie.id}>
-            <NavLink className="movieContainer" to={`/movies/${movie.id}`}>
-              {movie.title}
-              <img
-                className="imgSmall"
-                src={`${imageBaseURL}${movie.poster_path}`}
-                alt={movie.title}
-              />
-            </NavLink>
-            <hr />
-          </li>
-        ))}
-      </ul>
-    </div>
-  );
+const location = useLocation();
+
+return (
+    <ul>
+        {allMovies.map((movie=>
+        <div key={movie.id}>
+            <li>
+                <Link to={`/movie/${movie.id}`} state={location}>{movie.title}</Link>
+            </li>
+            </div>))}
+    </ul>
+)
 }
